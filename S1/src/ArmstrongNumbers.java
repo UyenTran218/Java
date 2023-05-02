@@ -4,11 +4,16 @@ public class ArmstrongNumbers {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Plz enter your number");
-        int n = scanner.nextInt();  
-        checkArmstrongNumber(n);
+        int n = scanner.nextInt();
+        for(int i = 0; i <= n; i++){
+            if(checkArmstrongNumber(i)==true){
+                System.out.println(i);
+            }
+        }
+        //checkArmstrongNumber(n);
         scanner.close();
     }
-    public static void checkArmstrongNumber(int n) {
+    public static boolean checkArmstrongNumber(int n) {
         int count = 0;
         int input = n;
         Integer[] numbers = new Integer[]{};
@@ -26,10 +31,12 @@ public class ArmstrongNumbers {
         }
         int sum = Arrays.stream(numbers).mapToInt(Integer::intValue).sum();
         if(sum == input){
-            System.out.println(input + " is an Armstrong number which has number of digits of " + count);
+            //System.out.println(input + " is an Armstrong number which has number of digits of " + count);
+            return true;
         }
         else{
-            System.out.println( input + " is not an Armstrong number ");
+            //System.out.println( input + " is not an Armstrong number ");
+            return false;
         }
     }
 }
