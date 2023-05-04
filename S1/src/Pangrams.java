@@ -5,7 +5,11 @@ public class Pangrams {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Plz enter your sentence");
         String s1 = scanner.nextLine().toLowerCase();
-        System.out.println(checkPangram(s1)); 
+        if(checkPangram(s1) && s1.length()==26){
+            System.out.println("Perfect pangram");
+        }else{
+            System.out.println("Not a perfect pangram");
+        }
         scanner.close();
     }
 
@@ -17,6 +21,7 @@ public class Pangrams {
             }
         }
         if (allCharPresent == true) {
+            
             return true;
         } else {
             return false;
