@@ -62,7 +62,7 @@ public class App {
             for (int i = 0; i < vehiclesList.size(); i++) {
                 System.out.println(vehiclesList.get(i));
             }
-        }if (sortingOrder == "descending") {
+        }else if (sortingOrder == "descending") {
             Collections.reverse(vehiclesList);
             for (int i = 0; i < vehiclesList.size(); i++) {
                 System.out.println(vehiclesList.get(i));
@@ -73,6 +73,15 @@ public class App {
         if (attribute.toLowerCase() == "brand") {
             Map<String, List<Vehicles>> vehicleGrouped = vehicleList.stream()
                     .collect(Collectors.groupingBy(v -> v.brand));
+
+            // Map<String, List<Vehicles>> vehicleGrouped_Tmp = new HashMap<>();
+            // for (int i=0; i<vehicleList.size(); i++) {
+
+            //     Vehicles v = vehicleList.get(i);
+            //     List<Vehicles> vlist = vehicleGrouped_Tmp.get(v.brand); // get list of vehicles by its brand
+            //     vlist.add(v);
+            // }   
+
             Iterator<Map.Entry<String, List<Vehicles>>> itr = vehicleGrouped.entrySet().iterator();
             while (itr.hasNext()) {
                 System.out.println(itr.next());
