@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.Map.Entry;
 import java.util.stream.*;
 
 public class App {
@@ -15,28 +16,54 @@ public class App {
         vehiclesList.add(v4);
         
         String orderByValue = "brand";
-        String sortingOrder = "ascending";
-        String groupByAttribute = "condition";
-        
+        String sortingOrder = "descending";
+        String groupByAttribute = "cost";
+
         orderBy(orderByValue, vehiclesList);
         sortingOrder(sortingOrder, vehiclesList);
         groupBy(groupByAttribute, vehiclesList);
 
     }
     public static void orderBy(String orderByValue, List<Vehicles> vehiclesList) {
-        if(orderByValue == "brand"){
-            final Comparator<Vehicles> byBrand = Comparator.comparing(Vehicles::getBrand);
+        Comparator<Vehicles> byBrand = Comparator.comparing(Vehicles::getBrand);
+        Comparator<Vehicles> byType = Comparator.comparing(Vehicles::getType);
+        Comparator<Vehicles> byLocation = Comparator.comparing(Vehicles::getLocation);
+        Comparator<Vehicles> byColor = Comparator.comparing(Vehicles::getColor);
+        Comparator<Vehicles> byYear = Comparator.comparing(Vehicles::getYear);
+        Comparator<Vehicles> byCost = Comparator.comparing(Vehicles::getCost);
+        Comparator<Vehicles> byCondition = Comparator.comparing(Vehicles::getCondition);
+        if(orderByValue == "brand"){ 
             vehiclesList.sort(byBrand);
         }
+        if(orderByValue == "condition"){
+            vehiclesList.sort(byCondition);
+        }
+        if(orderByValue == "year"){
+            vehiclesList.sort(byYear);
+        }
+        if(orderByValue == "color"){
+            vehiclesList.sort(byColor);
+        }
+        if(orderByValue == "location"){
+            vehiclesList.sort(byLocation);
+        }
+        if(orderByValue == "cost"){
+            vehiclesList.sort(byCost);
+        }
+        if(orderByValue == "type"){
+            vehiclesList.sort(byType);
+        }
+        
     }
 
     public static void sortingOrder(String sortingOrder, List<Vehicles> vehiclesList) {
         if (sortingOrder == "ascending") {
+            
             for (int i = 0; i < vehiclesList.size(); i++) {
                 System.out.println(vehiclesList.get(i));
             }
         }if (sortingOrder == "descending") {
-            Collections.sort(vehiclesList, Collections.reverseOrder());
+            Collections.reverse(vehiclesList);
             for (int i = 0; i < vehiclesList.size(); i++) {
                 System.out.println(vehiclesList.get(i));
             }
@@ -55,6 +82,46 @@ public class App {
             Map<String, List<Vehicles>> vehicleGrouped = vehicleList.stream()
                     .collect(Collectors.groupingBy(v -> v.condition));
             Iterator<Map.Entry<String, List<Vehicles>>> itr = vehicleGrouped.entrySet().iterator();
+            while (itr.hasNext()) {
+                System.out.println(itr.next());
+            }
+        }
+        if (attribute.toLowerCase() == "type") {
+            Map<String, List<Vehicles>> vehicleGrouped = vehicleList.stream()
+                    .collect(Collectors.groupingBy(v -> v.type));
+            Iterator<Map.Entry<String, List<Vehicles>>> itr = vehicleGrouped.entrySet().iterator();
+            while (itr.hasNext()) {
+                System.out.println(itr.next());
+            }
+        }
+        if (attribute.toLowerCase() == "location") {
+            Map<String, List<Vehicles>> vehicleGrouped = vehicleList.stream()
+                    .collect(Collectors.groupingBy(v -> v.location));
+            Iterator<Map.Entry<String, List<Vehicles>>> itr = vehicleGrouped.entrySet().iterator();
+            while (itr.hasNext()) {
+                System.out.println(itr.next());
+            }
+        }
+        if (attribute.toLowerCase() == "color") {
+            Map<String, List<Vehicles>> vehicleGrouped = vehicleList.stream()
+                    .collect(Collectors.groupingBy(v -> v.color));
+            Iterator<Map.Entry<String, List<Vehicles>>> itr = vehicleGrouped.entrySet().iterator();
+            while (itr.hasNext()) {
+                System.out.println(itr.next());
+            }
+        }
+        if (attribute.toLowerCase() == "year") {
+            Map<String, List<Vehicles>> vehicleGrouped = vehicleList.stream()
+                    .collect(Collectors.groupingBy(v -> v.year));
+            Iterator<Map.Entry<String, List<Vehicles>>> itr = vehicleGrouped.entrySet().iterator();
+            while (itr.hasNext()) {
+                System.out.println(itr.next());
+            }
+        }
+        if (attribute.toLowerCase() == "cost") {
+            Map<Object, List<Vehicles>> vehicleGrouped = vehicleList.stream()
+            .collect(Collectors.groupingBy(v -> v.cost));
+            Iterator<Entry<Object, List<Vehicles>>> itr = vehicleGrouped.entrySet().iterator();
             while (itr.hasNext()) {
                 System.out.println(itr.next());
             }
