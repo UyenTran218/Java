@@ -3,15 +3,26 @@ package S4;
 import java.util.*;
 
 public class InsertionSort {
-    private static int[] TEST1_NUMS1 = { 1, 6, 2, 3, 4, 9 };
-    private static int[] TEST1_EXPECTED_RESULT = { 1, 2, 3, 4, 6, 9 };
+    private static int[] TEST1_NUMS1 = { 1, 6, 2, 17, 4, 9, 3 };
+    private static int[] TEST1_EXPECTED_RESULT = { 1, 2, 3, 4, 6, 9, 17 };
 
     InsertionSort() {
 
     }
 
     public void insertionSort(int[] arr) {
+        int n = arr.length;
 
+        for(int i = 1; i < n; i++)
+        {
+            int curr_num = arr[i];
+            int j = i - 1;
+            while(j >= 0 && arr[j] > curr_num){
+                arr[j + 1] = arr[j];
+                j = j - 1;
+            }
+            arr[j + 1] = curr_num;
+        }
     }
 
     private void printTestResult(int[] actual, int[] expected) {
