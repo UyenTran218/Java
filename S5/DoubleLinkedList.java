@@ -242,7 +242,7 @@ public class DoubleLinkedList {
         dll.append(110);
         dll.append(200);
         dll.append(145);
-        // dll.append(145);
+        dll.append(145);
 
         // dll.printList();
         // dll.find(145);
