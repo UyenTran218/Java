@@ -193,18 +193,22 @@ public class DoubleLinkedList {
         return slow;
     }
 
+    public void sortByMerge() {
+        head = mergeSort(this.head);
+    }
     /*
      * Sort the list in increasing order using merge sort
      */
-    Node mergeSort(Node h) {
-        if (h == null || h.next == null) {
-            return h;
+    private Node mergeSort(Node n) {
+        if (n == null || n.next == null) {
+          return n;
         }
-        Node mid = findMidNode(h);
+        Node mid = findMidNode(n);
         Node head2 = mid.next;
         mid.next = null;
+        head2.previous = null;
 
-        Node leftHead = mergeSort(h);
+        Node leftHead = mergeSort(n);
         Node rightHead = mergeSort(head2);
 
         return merge(leftHead, rightHead);
@@ -222,11 +226,13 @@ public class DoubleLinkedList {
         }
 
         if (head1.data <= head2.data) {
+            //System.out.println("head 1: " + head1.data);
             head1.next = merge(head1.next, head2);
             head1.next.previous = head1;
             head1.previous = null;
             return head1;
         } else {
+            //System.out.println("head 2: " + head2.data);
             head2.next = merge(head1, head2.next);
             head2.next.previous = head2;
             head2.previous = null;
@@ -238,13 +244,18 @@ public class DoubleLinkedList {
     public static void main(String[] args) {
         DoubleLinkedList dll = new DoubleLinkedList();
 
-        dll.head = dll.new Node(190);
+        dll.append(120);
         dll.append(110);
-        dll.append(200);
-        dll.append(145);
+        dll.append(150);
         dll.append(145);
 
-        // dll.printList();
+        DoubleLinkedList dll2 = new DoubleLinkedList();
+
+        dll2.append(90);
+        dll2.append(123);
+        dll2.append(167);
+        dll2.append(180);
+        //dll.printList();
         // dll.find(145);
         // dll.delete(66);
         // dll.printList();
@@ -254,7 +265,8 @@ public class DoubleLinkedList {
         // dll.insertInSortedOrder(170);
         // dll.insertInSortedOrder(195);
         // System.out.println(dll.findMidNode(head).data);
-        dll.mergeSort(dll.head);
+        dll.sortByMerge();
+        // dll.head = dll.merge(dll.head, dll2.head);
         dll.printList();
     }
 
