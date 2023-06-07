@@ -196,12 +196,13 @@ public class DoubleLinkedList {
     public void sortByMerge() {
         head = mergeSort(this.head);
     }
+
     /*
      * Sort the list in increasing order using merge sort
      */
     private Node mergeSort(Node n) {
         if (n == null || n.next == null) {
-          return n;
+            return n;
         }
         Node mid = findMidNode(n);
         Node head2 = mid.next;
@@ -226,13 +227,13 @@ public class DoubleLinkedList {
         }
 
         if (head1.data <= head2.data) {
-            //System.out.println("head 1: " + head1.data);
+            // System.out.println("head 1: " + head1.data);
             head1.next = merge(head1.next, head2);
             head1.next.previous = head1;
             head1.previous = null;
             return head1;
         } else {
-            //System.out.println("head 2: " + head2.data);
+            // System.out.println("head 2: " + head2.data);
             head2.next = merge(head1, head2.next);
             head2.next.previous = head2;
             head2.previous = null;
@@ -248,6 +249,7 @@ public class DoubleLinkedList {
         dll.append(110);
         dll.append(150);
         dll.append(145);
+        dll.append(145);
 
         DoubleLinkedList dll2 = new DoubleLinkedList();
 
@@ -255,7 +257,8 @@ public class DoubleLinkedList {
         dll2.append(123);
         dll2.append(167);
         dll2.append(180);
-        //dll.printList();
+
+        // dll.printList();
         // dll.find(145);
         // dll.delete(66);
         // dll.printList();
