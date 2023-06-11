@@ -10,6 +10,10 @@ public class Homework1 {
 
     }
 
+    /**
+     * function to check if the current min number of pages is feasible
+     * 
+     */
     boolean checkValidity(int[] pages, int m, int n, int curr_min) {
         int studentsRequired = 1;
         int curr_sum = 0;
@@ -24,8 +28,6 @@ public class Homework1 {
     }
 
     private int findPages(int[] arr, int n, int m) {
-        // m = 1 -> result = sum of pages
-
         if (m > n) {
             return -1;
         }

@@ -11,9 +11,35 @@ public class Homework2 {
 
     }
 
+    private int countElementsLessThanMid(int[] arr, int mid) {
+        int count = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] <= mid) {
+                count++;
+            }
+        }
+        return count;
+
+    }
+
     private int findKthSmallest(int[] arr, int l, int r, int k) {
-        Arrays.sort(arr);
-        return arr[k - 1];
+        int low = Integer.MIN_VALUE;
+        int high = Integer.MAX_VALUE;
+
+        for (int i = 0; i < arr.length; i++) {
+            low = Math.min(low, arr[i]);
+            high = Math.max(high, arr[i]);
+        }
+
+        while (low < high) {
+            int mid = (high + low) / 2;
+            if (countElementsLessThanMid(arr, mid) < k) {
+                low = mid + 1;
+            } else {
+                high = mid;
+            }
+        }
+        return low;
 
     }
 
