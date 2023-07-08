@@ -23,6 +23,9 @@ public class Homework2 {
     }
 
     private int findKthSmallest(int[] arr, int l, int r, int k) {
+        if (k > arr.length) {
+            return -1;
+        }
         int low = Integer.MIN_VALUE;
         int high = Integer.MAX_VALUE;
 
