@@ -17,7 +17,6 @@ public class BinarySearchTree {
     BinarySearchTree(int n) {
         this.root = new Node(n);
     }
-
     public void insertNode(Node curNode, int n) {
         Node newNode = new Node(n);
         if (curNode.data < n) {
@@ -36,38 +35,68 @@ public class BinarySearchTree {
     }
 
     public void removeNode(Node curNode, int n) {
-        // TODO
-        // https://www.geeksforgeeks.org/deletion-in-binary-search-tree/ 
-        if(curNode.data < n){
+        //if delete node doesn't exist
+        if(curNode == null){
+            return;
+        }
+        if (curNode.data < n) {
             removeNode(curNode.right, n);
-        } else if (curNode.data > n){
+            return;
+        } else if (curNode.data > n) {
             removeNode(curNode.left, n);
+            return;
         }
+        // The node with data of n has been found.
+        if(curNode.left == null && curNode.right == null){
+            curNode = null;
+        }
+        // Case 2: the found node has a single child sub-tree
+        else if (curNode.left == null) {
+            curNode = curNode.right;
+        } 
+        else if (curNode.right == null) {
+            curNode = curNode.left;
+        }
+        // Case 3: the found node has two children sub-trees.
         else {
-            if(curNode.left == null && curNode.right == null){
-                
-            }
+            // Find the min node MIN_RIGHT_NODE in the right sub-tree
+            Node minRightNode = findMinNode(curNode.right);
+            // Replace data of the current node with the data of MIN_RIGHT_NODE
+            curNode.data = minRightNode.data;
+            // Delete the min node MIN_RIGHT_NODE in the right sub-tree
+            removeNode(curNode.right, minRightNode.data);
         }
-
     }
 
+    //find the MIN_NODE of a BST
+    public Node findMinNode(Node curNode){
+        if(curNode == null){
+            return curNode;
+        }
+        if(curNode.left != null){
+            return findMinNode(curNode.left);
+        } else {
+            return curNode;
+        }
+        
+    }
     public int[] retrieveAllNodesByPostOrderTraverse() {
         // TODO
-        // https://www.geeksforgeeks.org/binary-search-tree-traversal-inorder-preorder-post-order/ 
+        // https://www.geeksforgeeks.org/binary-search-tree-traversal-inorder-preorder-post-order/
         int[] arr = {};
         return arr;
     }
 
     public int[] retrieveAllNodesByPreOrderTraverse() {
         // TODO
-        // https://www.geeksforgeeks.org/binary-search-tree-traversal-inorder-preorder-post-order/ 
+        // https://www.geeksforgeeks.org/binary-search-tree-traversal-inorder-preorder-post-order/
         int[] arr = {};
         return arr;
     }
 
     public int[] retrieveAllNodesByInOrderTraverse() {
         // TODO
-        // https://www.geeksforgeeks.org/binary-search-tree-traversal-inorder-preorder-post-order/ 
+        // https://www.geeksforgeeks.org/binary-search-tree-traversal-inorder-preorder-post-order/
         int[] arr = {};
         return arr;
     }
