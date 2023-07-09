@@ -17,6 +17,8 @@ public class BinarySearchTree {
     BinarySearchTree(int n) {
         this.root = new Node(n);
     }
+
+    //Insert a new node with data of n to a BST
     public void insertNode(Node curNode, int n) {
         Node newNode = new Node(n);
         if (curNode.data < n) {
@@ -34,6 +36,7 @@ public class BinarySearchTree {
         }
     }
 
+    //Remove the node with data of n in a BST
     public void removeNode(Node curNode, int n) {
         //if delete node doesn't exist
         if(curNode == null){
@@ -80,6 +83,7 @@ public class BinarySearchTree {
         }
         
     }
+    
     public int[] retrieveAllNodesByPostOrderTraverse() {
         // TODO
         // https://www.geeksforgeeks.org/binary-search-tree-traversal-inorder-preorder-post-order/
