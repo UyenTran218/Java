@@ -11,23 +11,26 @@ public class Homework3 {
     }
 
     /**
-     * function to check if the current min number of pages is feasible
+     * function to check if the current min time is feasible
      * 
      */
-    boolean checkValidity(int[] pages, int m, int n, int curr_min) {
-        int studentsRequired = 1;
-        int curr_sum = 0;
+    boolean checkValidity(int[] arr, int k, int n, int maxtime) {
+        int paintersRequired = 1;
+        int currTotaltime = 0;
+
         for (int i = 0; i < n; i++) {
-            curr_sum += pages[i];
-            if (curr_sum > curr_min) {
-                studentsRequired += 1;
-            }
+            if(arr[i] > maxtime) return false; 
+            if(currTotaltime + arr[i] > maxtime) {
+                paintersRequired ++;
+                if(paintersRequired > k) return false;
+            } else currTotaltime += arr[i]s
         }
-        return studentsRequired <= m;
+        return true;
 
     }
 
     private int minTime(int[] arr, int n, int k) {
+        //if number of painters is greater than number of boards
         if (k > n) {
             return -1;
         }
@@ -37,8 +40,10 @@ public class Homework3 {
             sum += arr[i];
         }
 
+        //search space
         int start = arr[n - 1];
         int end = sum;
+
         int result = 0;
 
         while (start <= end) {
